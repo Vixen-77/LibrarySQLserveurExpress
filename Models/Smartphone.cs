@@ -21,9 +21,9 @@ namespace LibrarySSMS.Models{
    
 
 
-        public required float lat {get; set;}
-        public required float lon {get; set;}
-        public DateTime Timestamp { get; set; } // Format ISO 8601
+        public double Latitude { get; set; }  // Précis et conforme à OSM
+        public double Longitude { get; set; } // Précis et conforme à OSM
+        public DateTimeOffset Timestamp { get; set; } // Format ISO 8601 + UTC
 
  }
 }

@@ -27,7 +27,7 @@ namespace LibrarySSMS.Models
          public required string PostalCode { get; set; }
         public DateTime DateOfBirth { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
         public DateTime? LastLogin { get; set; }
          public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
         public bool TwoFactorEnabled { get; set; } 

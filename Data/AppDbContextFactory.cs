@@ -22,7 +22,7 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString = "fczookjiGITfPPHkfzjfzjefziiikdaelaazdlafb;ealkfnDhyged"; //this connextion is hashed try harder next time :) 
+            var connectionString = "CHAINE_CNX"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 

@@ -29,7 +29,6 @@ namespace LibrarySSMS.Models
         public required bool IsActive { get; set; }
         public int? nbSuspendedacount {get; set;}
         public int? nbDeletedacount {get; set;}
-        public  string? ReportofsuppressionaOrdeletionPath { get; set; }  
         public bool IsSuspended { get; set; } // 🔴 Admin suspendu ou pas
     }
 }
