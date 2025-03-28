@@ -37,17 +37,134 @@ while(P < 0.7) {
 }
 // Si on sort de la boucle, c'est que P >= 0.7
 return true
-//ici si on sort de la grande boucle englobante (while(P<0.7)) sa veut dire a coup sur P>0.7 dans ce cas on ne rapple pas le model 
-return true ici le toujour dans le cas du _await le hub recois dans ce cas un true est donc le hib va appler un autre service OBUvehicule(si le poteur a un vehicule)sinon appler le service phone (si ke porteur est un piéton) les service OBU et phone vont a leur tour genenre les potion GPS correct dans le secteur les envoyé a update postion la reponse final de update postion est attent du par le await des hubProS et ubRespHop pour tansfere les postion GPS au front 
+
+# Préparer Google Colab
 
 
-AnomalyDetectionService.cs
+1-**Active l’accélération GPU (facultatif, mais recommandé)**
+ Va dans Exécution → Modifier le type d’exécution.
+                    +
+Sélectionne GPU (cela accélère l'entraînement du modèle).
 
+2-**Importer les bibliothèques nécessaires**
+Dans la première cellule, exécutez ceci :
+
+import numpy as np
+import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report
+3-**Charger et préparer ton dataset (.csv)**
+Téléchargez ton fichier CSV sur Colab
+Exécute cette cellule pour importer ton fichier CSV :
 
-# Vérifier si le GPU est activé
-print("GPU disponible :", tf.config.list_physical_devices('GPU'))
+from google.colab import files
+uploaded = files.upload()
+Une fenêtre s'ouvrira → sélectionne ton fichier .csv.
+
+📌 Lire le dataset avec Pandas
+python
+Copier
+Modifier
+df = pd.read_csv("ton_fichier.csv")  # Remplace par le nom du fichier
+df.head()  # Affiche les premières lignes
+📌 Séparer les entrées et la sortie
+python
+Copier
+Modifier
+X = df.iloc[:, :-1].values  # 14 paramètres (colonnes 1 à 14)
+y = df.iloc[:, -1].values   # Dernière colonne (0 = Low, 1 = High)
+📌 Diviser en train/test (80/20)
+python
+Copier
+Modifier
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+📌 Standardiser les données
+python
+Copier
+Modifier
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+4️⃣ Construire le modèle DNN
+📌 Définir l’architecture
+python
+Copier
+Modifier
+model = keras.Sequential([
+    layers.Dense(32, activation='relu', input_shape=(14,)),
+    layers.Dense(16, activation='relu'),
+    layers.Dense(8, activation='relu'),
+    layers.Dense(8, activation='relu'),  # Retirer cette ligne si tu veux tester 32-16-8-1
+    layers.Dense(1, activation='sigmoid')  # Classification binaire
+])
+📌 Compiler le modèle
+python
+Copier
+Modifier
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+5️⃣ Entraîner le modèle
+Ajoute Early Stopping pour éviter l'overfitting :
+
+python
+Copier
+Modifier
+early_stopping = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+📌 Lancer l’entraînement
+python
+Copier
+Modifier
+history = model.fit(X_train, y_train,
+                    epochs=50,  # Augmente si besoin
+                    batch_size=512,
+                    validation_data=(X_test, y_test),
+                    callbacks=[early_stopping])
+6️⃣ Évaluer le modèle
+📌 Voir la précision sur les données test
+python
+Copier
+Modifier
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f"Test Accuracy: {test_acc:.2%}")
+📌 Afficher les métriques (Precision, Recall, F1-score)
+python
+Copier
+Modifier
+y_pred = (model.predict(X_test) > 0.5).astype(int)
+print(classification_report(y_test, y_pred))
+7️⃣ Sauvegarder le modèle (optionnel)
+Si tu veux sauvegarder le modèle pour l'utiliser plus tard :
+
+python
+Copier
+Modifier
+model.save("mon_modele.h5")
+Et pour le recharger :
+
+python
+Copier
+Modifier
+model = keras.models.load_model("mon_modele.h5")
+🎯 Résumé des étapes
+1️⃣ Ouvre Google Colab + active le GPU.
+2️⃣ Importe les bibliothèques.
+3️⃣ Charge et prétraite les données.
+4️⃣ Définis et compiles le modèle DNN.
+5️⃣ Entraîne le modèle avec Early Stopping.
+6️⃣ Évalue la performance (accuracy + F1-score).
+7️⃣ Sauvegarde le modèle (optionnel).
+
+💡 Si ton modèle sur-apprend (overfitting), ajoute du dropout :
+
+python
+Copier
+Modifier
+layers.Dropout(0.3)
+entre certaines couches.
+
+Dis-moi si tu veux tester plusieurs architectures automatiquement ! 🚀

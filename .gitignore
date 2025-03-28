@@ -12,6 +12,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*human_vital_signs_dataset_2024.csv
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

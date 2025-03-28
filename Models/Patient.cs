@@ -19,8 +19,6 @@ namespace LibrarySSMS.Models
         [EmailAddress]
         public required string MailMed { get; set;} 
 
-        public int? NbSec { get; set;} 
-
         // clé etrangère 
         [ForeignKey(nameof(Proche))]
         public required Guid IdProche { get; set; } // la clé etrangère Id
@@ -33,11 +31,21 @@ namespace LibrarySSMS.Models
         [EmailAddress]
         public required string Email { get; set; }   
 
-        public required string PasswordHash { get; set; }       
+        public required string PasswordHash { get; set; } 
         public required string Salt { get; set; }
-        public required string FullName { get; set; }
+
+        public required string Name { get; set; }
+        public required string LastName { get; set; }
+
+
 
         public required int Age {get; set;}
+        public required bool Gender {get; set;}   //0 si femme et 1 si homme
+        public required double Weight {get; set;} 
+        public required double Height {get;set;}
+
+
+
         public required string City { get; set; }
         public required string PostalCode { get; set; }
         public required DateTime DateOfBirth { get; set; }
@@ -49,6 +57,8 @@ namespace LibrarySSMS.Models
         public bool?  SubscriptionPlan { get; set; }  //false=gratuit true=payant  //avoir si on peut le faire
         public bool IsOnline { get; set; } 
         public required RoleManager Role { get; set; }
+
+
         
         public Guid?  IdphoneP { get; set; } 
         public Guid?  IdSmartwatchNewGenP {get; set;}
@@ -56,9 +66,9 @@ namespace LibrarySSMS.Models
         public Guid? IdVehiculeOBUP {get;set;}
         public Guid? IdCGMP { get; set; }
 
-        public required bool Gender {get; set;}   //0 si femme et 1 si homme 
 
         public required bool IsActive { get; set; }
         public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
+        public int? NbSec { get; set;} 
     }
 }

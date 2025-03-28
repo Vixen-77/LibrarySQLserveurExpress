@@ -22,7 +22,7 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString = "CHAINE_CNX"; 
+            var connectionString = "CHAINE_CONNEXION"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 

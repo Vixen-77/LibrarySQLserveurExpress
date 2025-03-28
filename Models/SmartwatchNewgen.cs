@@ -21,12 +21,13 @@ namespace LibrarySSMS.Models{
  /*4*/     public double? Oxygen_Saturation {get; set;}
  /*5*/     public int? Systolic_Blood_Pressure {get; set;}
  /*6*/     public int? Diastolic_Blood_Pressure {get; set;}
+ 
  /*7*/     //lage est mit dans la table patient et rtrouver via request.age avec une ingtérogation de la DB dans le hub
            //lattribut de lage sera transmit par requete 
 
  /*8*/    //le genr aussi sera mit transmi avec une requete
- /*9*/     public double? Weight {get; set;}
- /*10*/    public double? Height {get; set;}
+ /*9*/     
+ /*10*/    //le poids et la taille aussi seront transmit par requete
  /*11*/    public double? Derived_HRV  {get; set;}
  /*12*/    public int? Derived_Pulse_Pressure {get; set;}
  /*13*/    public double? Derived_BMI  {get; set;}

@@ -36,6 +36,8 @@ namespace LibrarySSMS.Models
         public required RoleManager Role { get; set; }
 
         public required bool IsActive { get; set; }
+        public Guid? IdVehiculeOBUSVP {get;set;}
+        public Guid? IdSmartphoneProS {get;set;}
       
       
       

@@ -26,13 +26,13 @@ public class RespHop
         public required string PhoneNumber { get; set; } // Optionnel
         public DateTime CreatedAt { get; set; } 
         public DateTime? LastLogin { get; set; }
-         public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
+        public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
         public bool TwoFactorEnabled { get; set; } 
         public required bool  SubscriptionPlan { get; set; }  //false=gratuit true=payant  //avoir si on peut le faire
         public bool IsOnline { get; set; } 
         public required RoleManager Role { get; set; }
 
         public required bool IsActive { get; set; }
-
+        public Guid? IdVehiculeOBUSV {get;set;}
 }
 }
