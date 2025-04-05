@@ -32,5 +32,7 @@ namespace LibrarySSMS.Models
 
         public int? nbSuspendedAdminacount {get; set;}
         public int? nbDeletedAdminacount {get; set;}
+
+        public int? DBmanipulation {get; set;} // 0 si il a le droit de manipuler la base de données et 1 sinon
     }
 }

@@ -43,10 +43,8 @@ namespace LibrarySSMS.Models
         public required bool Gender {get; set;}   //0 si femme et 1 si homme
         public required double Weight {get; set;} 
         public required double Height {get;set;}
-
-
-
-        public required string City { get; set; }
+        public required BloodType bloodType {get; set;}
+        public required string Adresse { get; set; }
         public required string PostalCode { get; set; }
         public required DateTime DateOfBirth { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
