@@ -8,10 +8,6 @@ namespace LibrarySSMS.Models{
       
         public required string ADRMAC {get; set;}
 
-        public required string Marque { get; set; } 
-
-        public required string Modele { get; set; } 
-
         public required Guid idporteur {get; set;} 
 
         public float? Glycemia {get; set;}

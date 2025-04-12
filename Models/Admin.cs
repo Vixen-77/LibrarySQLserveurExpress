@@ -30,5 +30,6 @@ namespace LibrarySSMS.Models
         public int? nbSuspendedacount {get; set;}
         public int? nbDeletedacount {get; set;}
         public bool IsSuspended { get; set; } // 🔴 Admin suspendu ou pas
+        public int? DBmanipulation {get; set;} // 0 si pas de manipulation 1 si manipulation de la base de donnée
     }
 }

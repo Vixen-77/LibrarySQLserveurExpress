@@ -15,6 +15,7 @@ namespace LibrarySSMS
       public DbSet<Admin> Admins {get;set;}
       public DbSet<SuperAdmin> SuperAdmins {get; set;}
       public DbSet<Proche> Proches { get; set; }
+      public DbSet<MedRec> MedRecs { get; set; }
       public DbSet<Centre> Centress { get; set; }
       public DbSet<SmartwatchNewGen> SmartwatchNewGens { get; set; }
       public DbSet<Smartwatch> Smartwatches { get; set; }

@@ -14,18 +14,14 @@ namespace LibrarySSMS.Models
         [Key]
         public required Guid UID { get; set; } 
 
-        public  string? MedicalRecordPath { get; set; } //lien du fichier du patient au moment de l'inscription
-
-        [EmailAddress]
-        public required string MailMed { get; set;} 
-
-        // clé etrangère 
-        [ForeignKey(nameof(Proche))]
-        public required Guid IdProche { get; set; } // la clé etrangère Id
-        public virtual required Proche Proche { get; set; } // navigation property  
-        // la configuration de la bonne navigation 
 
 
+    
+ 
+        public virtual ICollection<Proche> Proches { get; set; } = new List<Proche>();
+        public virtual ICollection<MedRec> MedRecs { get; set; } = new List<MedRec>();
+
+        
         public required UserState State { get; set; } // l'état du patient
 
         [EmailAddress]
@@ -43,11 +39,12 @@ namespace LibrarySSMS.Models
         public required bool Gender {get; set;}   //0 si femme et 1 si homme
         public required double Weight {get; set;} 
         public required double Height {get;set;}
-        public required BloodType bloodType {get; set;}
+
+
         public required string Adresse { get; set; }
         public required string PostalCode { get; set; }
-        public required DateTime DateOfBirth { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
+        public required DateTime DateofBirth {get;set;}
         public DateTime CreatedAt { get; set; } 
         public DateTime? LastLogin { get; set; }
         public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
@@ -68,5 +65,8 @@ namespace LibrarySSMS.Models
         public required bool IsActive { get; set; }
         public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
         public int? NbSec { get; set;} 
+
+        //juste l'identité 
+        public required string identite {get;set;}
     }
 }

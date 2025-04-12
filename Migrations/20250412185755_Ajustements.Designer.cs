@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_SSMS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250324230540_InitData")]
-    partial class InitData
+    [Migration("20250412185755_Ajustements")]
+    partial class Ajustements
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace Library_SSMS.Migrations
                     b.Property<Guid>("UIDKEY")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DBmanipulation")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -92,14 +95,6 @@ namespace Library_SSMS.Migrations
 
                     b.Property<float?>("Glycemia")
                         .HasColumnType("real");
-
-                    b.Property<string>("Marque")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Modele")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("battry")
                         .HasColumnType("real");
@@ -170,6 +165,37 @@ namespace Library_SSMS.Migrations
                     b.ToTable("Centress");
                 });
 
+            modelBuilder.Entity("LibrarySSMS.Models.MedRec", b =>
+                {
+                    b.Property<Guid>("UIDMedRec")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailMed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PatientUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UIDMedRec");
+
+                    b.HasIndex("PatientUID");
+
+                    b.ToTable("MedRecs");
+                });
+
             modelBuilder.Entity("LibrarySSMS.Models.Patient", b =>
                 {
                     b.Property<Guid>("UID")
@@ -179,34 +205,30 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("AccountStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
+                    b.Property<string>("Adresse")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("IdCGMP")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<double>("Height")
+                        .HasColumnType("float");
 
-                    b.Property<Guid>("IdProche")
+                    b.Property<Guid?>("IdCGMP")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdSmartwatchNewGenP")
@@ -233,11 +255,12 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MailMed")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MedicalRecordPath")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("NbSec")
@@ -271,9 +294,14 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.HasKey("UID");
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
 
-                    b.HasIndex("IdProche");
+                    b.Property<string>("identite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UID");
 
                     b.ToTable("Patientss");
                 });
@@ -290,26 +318,41 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("AccountStatus")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("CheckedSchedule")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("City")
+                    b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Certif")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("CheckedSchedule")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateAcceptRequest")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("IdSmartphoneProS")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdVehiculeOBUSVP")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -320,8 +363,19 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("IsOnline")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsValidated")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -347,6 +401,10 @@ namespace Library_SSMS.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<string>("identite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UID");
 
@@ -362,10 +420,15 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PatientUID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdProche");
+
+                    b.HasIndex("PatientUID");
 
                     b.ToTable("Proches");
                 });
@@ -379,23 +442,36 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("AccountStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("City")
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdressHopital")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Certif")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("IdVehiculeOBUSV")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -405,6 +481,14 @@ namespace Library_SSMS.Migrations
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -430,6 +514,10 @@ namespace Library_SSMS.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<string>("identite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isAmbulanceReady")
                         .HasColumnType("bit");
@@ -561,9 +649,6 @@ namespace Library_SSMS.Migrations
                     b.Property<int?>("Heart_Rate")
                         .HasColumnType("int");
 
-                    b.Property<double?>("Height")
-                        .HasColumnType("float");
-
                     b.Property<bool>("IsConnected")
                         .HasColumnType("bit");
 
@@ -593,9 +678,6 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTimeOffset>("Timestamp")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<double?>("Weight")
-                        .HasColumnType("float");
-
                     b.Property<Guid>("idporteur")
                         .HasColumnType("uniqueidentifier");
 
@@ -609,6 +691,9 @@ namespace Library_SSMS.Migrations
                     b.Property<Guid>("UIDKEY")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DBmanipulation")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -714,15 +799,33 @@ namespace Library_SSMS.Migrations
                     b.Navigation("RespHop");
                 });
 
-            modelBuilder.Entity("LibrarySSMS.Models.Patient", b =>
+            modelBuilder.Entity("LibrarySSMS.Models.MedRec", b =>
                 {
-                    b.HasOne("LibrarySSMS.Models.Proche", "Proche")
-                        .WithMany()
-                        .HasForeignKey("IdProche")
+                    b.HasOne("LibrarySSMS.Models.Patient", "Patient")
+                        .WithMany("MedRecs")
+                        .HasForeignKey("PatientUID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Proche");
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.Proche", b =>
+                {
+                    b.HasOne("LibrarySSMS.Models.Patient", "Patient")
+                        .WithMany("Proches")
+                        .HasForeignKey("PatientUID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.Patient", b =>
+                {
+                    b.Navigation("MedRecs");
+
+                    b.Navigation("Proches");
                 });
 #pragma warning restore 612, 618
         }

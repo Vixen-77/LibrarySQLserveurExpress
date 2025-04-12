@@ -167,4 +167,44 @@ Modifier
 layers.Dropout(0.3)
 entre certaines couches.
 
-Dis-moi si tu veux tester plusieurs architectures automatiquement ! 🚀
+Dis-moi si tu veux tester plusieurs architectures automatiquement ! 
+
+
+
+
+const handleSubmit = async () => {
+  const formData = new FormData();
+  formData.append("Name", data.firstname);
+  formData.append("LastName", data.lastname);
+  formData.append("Email", data.email);
+  formData.append("Password", data.password);
+  formData.append("Adress", data.adress);
+  formData.append("PostalCode", data.postalcode);
+  formData.append("PhoneNumber", data.phonenumber);
+  formData.append("DateOfBirth", data.dateofbirth.toISOString());
+
+  if (data.image) {
+    formData.append("IdentityFile", data.image); // fichier image
+  }
+
+  await axios.post("/api/signup", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  });
+};
+
+
+//
+public class PositionObject
+{
+    public int Id { get; set; } // toujours utile pour l'identifiant
+
+    // Très important : noms identiques à ceux utilisés dans React Native
+    public double Latitude { get; set; }     // Ex : 37.78825
+    public double Longitude { get; set; }    // Ex : -122.4324
+
+    // Facultatif : tu peux enrichir le marker
+    public string Title { get; set; }        // "You are here"
+    public string Description { get; set; }  // "Current position"
+}

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Library_SSMS.Migrations
 {
     /// <inheritdoc />
-    public partial class InicialCreation : Migration
+    public partial class Ajustements : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,8 +28,8 @@ namespace Library_SSMS.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     nbSuspendedacount = table.Column<int>(type: "int", nullable: true),
                     nbDeletedacount = table.Column<int>(type: "int", nullable: true),
-                    ReportofsuppressionaOrdeletionPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsSuspended = table.Column<bool>(type: "bit", nullable: false)
+                    IsSuspended = table.Column<bool>(type: "bit", nullable: false),
+                    DBmanipulation = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,8 +42,6 @@ namespace Library_SSMS.Migrations
                 {
                     IdCGM = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ADRMAC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Marque = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Modele = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     idporteur = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Glycemia = table.Column<float>(type: "real", nullable: true),
                     isGlyhigh = table.Column<bool>(type: "bit", nullable: false),
@@ -56,16 +54,44 @@ namespace Library_SSMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Proches",
+                name: "Patientss",
                 columns: table => new
                 {
-                    IdProche = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    State = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    Weight = table.Column<double>(type: "float", nullable: false),
+                    Height = table.Column<double>(type: "float", nullable: false),
+                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateofBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AccountStatus = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    SubscriptionPlan = table.Column<bool>(type: "bit", nullable: true),
+                    IsOnline = table.Column<bool>(type: "bit", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    IdphoneP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdSmartwatchNewGenP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdSmartwatchP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdVehiculeOBUP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdCGMP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsValidated = table.Column<bool>(type: "bit", nullable: false),
+                    NbSec = table.Column<int>(type: "int", nullable: true),
+                    identite = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Proches", x => x.IdProche);
+                    table.PrimaryKey("PK_Patientss", x => x.UID);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,23 +101,32 @@ namespace Library_SSMS.Migrations
                     UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     AcceptRequest = table.Column<bool>(type: "bit", nullable: false),
+                    DateAcceptRequest = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CheckedSchedule = table.Column<bool>(type: "bit", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateofBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AccountStatus = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     SubscriptionPlan = table.Column<bool>(type: "bit", nullable: false),
                     IsOnline = table.Column<bool>(type: "bit", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IdVehiculeOBUSVP = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IdSmartphoneProS = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    identite = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Certif = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsValidated = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,19 +142,26 @@ namespace Library_SSMS.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdressHopital = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateofBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AccountStatus = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     SubscriptionPlan = table.Column<bool>(type: "bit", nullable: false),
                     IsOnline = table.Column<bool>(type: "bit", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    identite = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Certif = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IdVehiculeOBUSV = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,9 +179,9 @@ namespace Library_SSMS.Migrations
                     idporteur = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     battry = table.Column<float>(type: "real", nullable: false),
                     IsConnected = table.Column<bool>(type: "bit", nullable: false),
-                    lat = table.Column<float>(type: "real", nullable: false),
-                    lon = table.Column<float>(type: "real", nullable: false),
-                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    Timestamp = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,20 +192,23 @@ namespace Library_SSMS.Migrations
                 name: "Smartwatches",
                 columns: table => new
                 {
-                    IdSmartwatchNewGen = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdSmartwatch = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ADRMAC = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     idporteur = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Marque = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Modele = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FC_capte = table.Column<int>(type: "int", nullable: true),
+                    PAS_capte = table.Column<int>(type: "int", nullable: true),
+                    PAD_capte = table.Column<int>(type: "int", nullable: true),
+                    TGS_capte = table.Column<float>(type: "real", nullable: true),
                     IsConnected = table.Column<bool>(type: "bit", nullable: false),
-                    Anomalie = table.Column<bool>(type: "bit", nullable: false),
-                    lat = table.Column<float>(type: "real", nullable: true),
-                    lon = table.Column<float>(type: "real", nullable: true),
-                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    Timestamp = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Smartwatches", x => x.IdSmartwatchNewGen);
+                    table.PrimaryKey("PK_Smartwatches", x => x.IdSmartwatch);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,11 +220,20 @@ namespace Library_SSMS.Migrations
                     idporteur = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Marque = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Modele = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Heart_Rate = table.Column<int>(type: "int", nullable: true),
+                    Respiratory_Rate = table.Column<int>(type: "int", nullable: true),
+                    Body_Temperature = table.Column<double>(type: "float", nullable: true),
+                    Oxygen_Saturation = table.Column<double>(type: "float", nullable: true),
+                    Systolic_Blood_Pressure = table.Column<int>(type: "int", nullable: true),
+                    Diastolic_Blood_Pressure = table.Column<int>(type: "int", nullable: true),
+                    Derived_HRV = table.Column<double>(type: "float", nullable: true),
+                    Derived_Pulse_Pressure = table.Column<int>(type: "int", nullable: true),
+                    Derived_BMI = table.Column<double>(type: "float", nullable: true),
+                    Derived_MAP = table.Column<double>(type: "float", nullable: true),
                     IsConnected = table.Column<bool>(type: "bit", nullable: false),
-                    Anomalie = table.Column<bool>(type: "bit", nullable: false),
-                    lat = table.Column<float>(type: "real", nullable: true),
-                    lon = table.Column<float>(type: "real", nullable: true),
-                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    Timestamp = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -203,7 +257,8 @@ namespace Library_SSMS.Migrations
                     Role = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     nbSuspendedAdminacount = table.Column<int>(type: "int", nullable: true),
-                    nbDeletedAdminacount = table.Column<int>(type: "int", nullable: true)
+                    nbDeletedAdminacount = table.Column<int>(type: "int", nullable: true),
+                    DBmanipulation = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -222,9 +277,9 @@ namespace Library_SSMS.Migrations
                     battry = table.Column<float>(type: "real", nullable: false),
                     typecar = table.Column<int>(type: "int", nullable: false),
                     isRouteur = table.Column<bool>(type: "bit", nullable: false),
-                    lat = table.Column<float>(type: "real", nullable: false),
-                    lon = table.Column<float>(type: "real", nullable: false),
-                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    Timestamp = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,42 +287,44 @@ namespace Library_SSMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Patientss",
+                name: "MedRecs",
                 columns: table => new
                 {
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MedicalRecordPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MailMed = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NbSec = table.Column<int>(type: "int", nullable: true),
-                    IdProche = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    State = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UIDMedRec = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AccountStatus = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    SubscriptionPlan = table.Column<bool>(type: "bit", nullable: false),
-                    IsOnline = table.Column<bool>(type: "bit", nullable: false),
-                    Role = table.Column<int>(type: "int", nullable: false),
-                    nbConnecteddivces = table.Column<int>(type: "int", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsValidated = table.Column<bool>(type: "bit", nullable: false)
+                    MailMed = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PatientUID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Patientss", x => x.UID);
+                    table.PrimaryKey("PK_MedRecs", x => x.UIDMedRec);
                     table.ForeignKey(
-                        name: "FK_Patientss_Proches_IdProche",
-                        column: x => x.IdProche,
-                        principalTable: "Proches",
-                        principalColumn: "IdProche",
+                        name: "FK_MedRecs_Patientss_PatientUID",
+                        column: x => x.PatientUID,
+                        principalTable: "Patientss",
+                        principalColumn: "UID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Proches",
+                columns: table => new
+                {
+                    IdProche = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientUID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Proches", x => x.IdProche);
+                    table.ForeignKey(
+                        name: "FK_Proches_Patientss_PatientUID",
+                        column: x => x.PatientUID,
+                        principalTable: "Patientss",
+                        principalColumn: "UID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -283,7 +340,10 @@ namespace Library_SSMS.Migrations
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nbamb = table.Column<int>(type: "int", nullable: false)
+                    Nbamb = table.Column<int>(type: "int", nullable: false),
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    Timestamp = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -302,9 +362,14 @@ namespace Library_SSMS.Migrations
                 column: "UID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patientss_IdProche",
-                table: "Patientss",
-                column: "IdProche");
+                name: "IX_MedRecs_PatientUID",
+                table: "MedRecs",
+                column: "PatientUID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Proches_PatientUID",
+                table: "Proches",
+                column: "PatientUID");
         }
 
         /// <inheritdoc />
@@ -320,7 +385,10 @@ namespace Library_SSMS.Migrations
                 name: "CGMs");
 
             migrationBuilder.DropTable(
-                name: "Patientss");
+                name: "MedRecs");
+
+            migrationBuilder.DropTable(
+                name: "Proches");
 
             migrationBuilder.DropTable(
                 name: "ProSs");
@@ -344,7 +412,7 @@ namespace Library_SSMS.Migrations
                 name: "RespHops");
 
             migrationBuilder.DropTable(
-                name: "Proches");
+                name: "Patientss");
         }
     }
 }

@@ -26,5 +26,4 @@ namespace LibrarySSMS.Models{
         public double Longitude { get; set; } // Précis et conforme à OSM
         public DateTimeOffset Timestamp { get; set; } // Format ISO 8601 + UTC
     }
-
 }

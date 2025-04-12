@@ -8,9 +8,11 @@ namespace LibrarySSMS.Models
         [Key]
         public required Guid IdC { get; set; } // UID du centre
 
+
         [ForeignKey(nameof(RespHop))]
         public required Guid UID { get; set; }  // la clé etrangère Id
         public virtual required RespHop RespHop { get; set; } // navigation property 
+        
         
         public required string NomC { get; set; }
         public required string Adresse { get; set; }
