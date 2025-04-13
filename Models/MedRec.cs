@@ -14,12 +14,14 @@ namespace LibrarySSMS.Models
     public required Guid UIDMedRec { get; set; }
 
     public required string FilePath { get; set; }  // Lien du fichier du patient
-    public required string FileName { get; set; }  // Nom du fichier
+    public required bool isvalide { get; set; }  // si le fichier est valide ou non 
 
     public DateTime CreatedAt { get; set; }
 
     [EmailAddress]
     public required string MailMed { get; set; }
+
+
 
     // Clé étrangère vers Patient
     public required Guid PatientUID { get; set; }

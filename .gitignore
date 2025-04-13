@@ -21,6 +21,10 @@
 # Mono auto generated files
 mono_crash.*
 
+# Ignorer les migrations EF Core
+**/Migrations/
+**/Migrations/EFCore.*.cs
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

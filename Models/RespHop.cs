@@ -8,11 +8,13 @@ public class RespHop
 {
     
       
-        public required bool isAmbulanceReady { get; set; } // true si l'ambulance est prête à partir
-
+        
         [Key]
         public required Guid UID { get; set; } 
-    
+
+        public virtual ICollection<SVEmbulance>? SVEmbulances { get; set; }
+       
+        
         [EmailAddress]
         public required string Email { get; set; }
         
@@ -23,7 +25,6 @@ public class RespHop
         public required string Name { get; set; }
         public required string LastName { get; set; }
         public required string Adress { get; set; }
-        public required string AdressHopital {get; set;}
         public required string PostalCode { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
         public DateTime CreatedAt { get; set; }
@@ -45,6 +46,7 @@ public class RespHop
 
 
         public required bool IsActive { get; set; }
+        public required bool IsValided { get; set; } // true si le compte est validé par l'admin
         public Guid? IdVehiculeOBUSV {get;set;}
 }
 }

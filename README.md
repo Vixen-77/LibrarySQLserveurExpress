@@ -208,3 +208,13 @@ public class PositionObject
     public string Title { get; set; }        // "You are here"
     public string Description { get; set; }  // "Current position"
 }
+double min = 36.5256664;
+double max = 38.2484752;
+
+Random rand = new Random();
+
+for (int i = 0; i < 5; i++)
+{
+    double val = min + rand.NextDouble() * (max - min);
+    Console.WriteLine(Math.Round(val, 6)); // tu choisis combien de décimales garder
+}

@@ -2,8 +2,7 @@ namespace LibrarySSMS.Enums{
 
   public enum Typecar
   {
-     SVP =40,
-     SV =30,
+     SPV =40,
      OV=20
   }
 }

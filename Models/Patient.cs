@@ -65,7 +65,8 @@ namespace LibrarySSMS.Models
         public required bool IsActive { get; set; }
         public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
         public int? NbSec { get; set;} 
-
+        public int? NbSecWeek { get; set;}
+       
         //juste l'identité 
         public required string identite {get;set;}
     }

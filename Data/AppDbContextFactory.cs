@@ -7,7 +7,7 @@ plus tard car la chaine de connexion est désormais gere par les deux API (princ
 TODO: cependant ne supprimez pas ce bout de code on le décommantera dans le cas ou on veut faire dautre migrations*/
 
 
-
+/*
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -22,12 +22,12 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString = "Server=localhost\\SQLEXPRESS;Database=IoTHealth;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
+            var connectionString = "Server=localhost\\SQLEXPRESS;Database=IoTHealth2.0;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }
     }
-}
+}*/
  

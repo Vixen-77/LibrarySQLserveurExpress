@@ -17,6 +17,7 @@ namespace LibrarySSMS
       public DbSet<Proche> Proches { get; set; }
       public DbSet<MedRec> MedRecs { get; set; }
       public DbSet<Centre> Centress { get; set; }
+      public DbSet<SVEmbulance> SVEmbulances { get; set; }
       public DbSet<SmartwatchNewGen> SmartwatchNewGens { get; set; }
       public DbSet<Smartwatch> Smartwatches { get; set; }
       public DbSet<Smartphone> Smartphones { get; set; }
