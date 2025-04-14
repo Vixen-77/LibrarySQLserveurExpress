@@ -14,6 +14,7 @@
 *.sln.docstates
 *human_vital_signs_dataset_2024.csv
 *SQLQuery.sql
+*DNNmodel.py
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
