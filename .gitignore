@@ -16,6 +16,7 @@
 *SQLQuery.sql
 *DNNmodel.py
 
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -25,6 +26,7 @@ mono_crash.*
 # Ignorer les migrations EF Core
 **/Migrations/
 **/Migrations/EFCore.*.cs
+**/Migrations/ApplicationDbContextModelSnapshot.cs
 
 # Build results
 [Dd]ebug/
