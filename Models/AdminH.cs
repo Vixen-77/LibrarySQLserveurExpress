@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
 using LibrarySSMS.Enums;
 namespace LibrarySSMS.Models{
-public class RespHop 
+public class AdminH 
 {
     
       
         
         [Key]
         public required Guid UID { get; set; } 
+        public required string UIDKEY { get; set; } // UID de l'admin H
 
         public virtual ICollection<SVEmbulance>? SVEmbulances { get; set; }
        
@@ -22,8 +23,7 @@ public class RespHop
         
         public required string Salt { get; set; }
 
-        public required string Name { get; set; }
-        public required string LastName { get; set; }
+        public required string FullName { get; set; }
         public required string Adress { get; set; }
         public required string PostalCode { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
@@ -33,21 +33,17 @@ public class RespHop
         public required bool Gender {get; set;}
         public DateTime? LastLogin { get; set; }
         public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
-        public bool TwoFactorEnabled { get; set; } 
-        public required bool  SubscriptionPlan { get; set; }  //false=gratuit true=payant  //avoir si on peut le faire
         public bool IsOnline { get; set; } 
         public required RoleManager Role { get; set; }
 
 
-        //FIXME: ici les fichier idf et certif 
-        public required string identite {get;set;}
-        public required string Certif {get;set;}
+        
 
 
+        public bool IsSuspended { get; set; } // 🔴 Admin suspendu ou pas
+        public bool? DBmanipulation {get; set;} // 0 si pas de manipulation 1 si manipulation de la base de donnée
 
         public required bool IsActive { get; set; }
-        public required bool IsValided { get; set; } // true si le compte est validé par l'admin
-        public Guid? IdVehiculeOBUSV {get;set;}
 }
 }
 

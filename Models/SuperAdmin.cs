@@ -10,9 +10,9 @@ namespace LibrarySSMS.Models
 {
     public class SuperAdmin
     {
-        [Key]
-        public required Guid UIDKEY { get; set; } 
+        [Key]    
         public required Guid UID {get; set;}
+        public required string UIDKEY { get; set; } 
     
         [EmailAddress]
         public required string Email { get; set; }
@@ -35,7 +35,7 @@ namespace LibrarySSMS.Models
 
         public int? DBmanipulation {get; set;} // 0 si il a le droit de manipuler la base de données et 1 sinon
 
-        public virtual ICollection<RespHop>? RespHops { get; set; }
+        public virtual ICollection<AdminH>? AdminHs { get; set; }
         public virtual ICollection<SVEmbulance>? Embulances { get; set; }
         public virtual ICollection<Centre>? Centres { get; set; }
         public virtual ICollection<Patient>? Patients { get; set; } // Liste des patients gérés par l'admin
@@ -47,5 +47,6 @@ namespace LibrarySSMS.Models
         public virtual ICollection<ProS>? Prosss { get; set; } // Liste des médicaments gérés par l'admin
         public virtual ICollection<CGM>? CGMs { get; set; } // Liste des CGM gérés par l'admin
         public virtual ICollection<Admin>? Admins { get; set; } // Liste des admins gérés par le super admin
+        public virtual ICollection<VehiculeOBU>? VehiculeOBUss { get; set; } // Liste des super admins gérés par le super admin
     }
 }

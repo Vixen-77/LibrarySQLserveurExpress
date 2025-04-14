@@ -22,12 +22,12 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString = "Server=localhost\\SQLEXPRESS;Database=IoTHealth2.0;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
+            var connectionString = "CHAINE_CNX"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }
     }
-}*/
- 
+}
+*/

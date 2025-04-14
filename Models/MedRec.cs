@@ -9,13 +9,13 @@ using System.Diagnostics.CodeAnalysis;
 namespace LibrarySSMS.Models
 {
     public class MedRec 
-{
+{   
     [Key]
     public required Guid UIDMedRec { get; set; }
 
     public required string FilePath { get; set; }  // Lien du fichier du patient
-    public required bool isvalide { get; set; }  // si le fichier est valide ou non 
 
+    public required MedRecState State { get; set; } // Etat du fichier (valide, non valide, en attente)
     public DateTime CreatedAt { get; set; }
 
     [EmailAddress]

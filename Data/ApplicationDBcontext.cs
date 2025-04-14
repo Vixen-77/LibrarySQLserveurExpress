@@ -11,7 +11,7 @@ namespace LibrarySSMS
         
       public DbSet<Patient> Patientss { get; set; }
       public DbSet<ProS> ProSs { get; set; }
-      public DbSet<RespHop> RespHops{ get; set; }
+      public DbSet<AdminH> AdminHs{ get; set; }
       public DbSet<Admin> Admins {get;set;}
       public DbSet<SuperAdmin> SuperAdmins {get; set;}
       public DbSet<Proche> Proches { get; set; }

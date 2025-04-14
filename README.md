@@ -218,3 +218,53 @@ for (int i = 0; i < 5; i++)
     double val = min + rand.NextDouble() * (max - min);
     Console.WriteLine(Math.Round(val, 6)); // tu choisis combien de décimales garder
 }
+
+////////////////////
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace OnnxApiExample.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PredictionController : ControllerBase
+    {
+        // Chemin vers ton modèle ONNX
+        private readonly string _onnxModelPath = "model.onnx";
+
+        // Crée une session d'ONNX Runtime pour charger le modèle
+        private InferenceSession _onnxSession;
+
+        public PredictionController()
+        {
+            // Charge le modèle ONNX au démarrage
+            _onnxSession = new InferenceSession(_onnxModelPath);
+        }
+
+        // Route POST pour effectuer la prédiction
+        [HttpPost("predict")]
+        public IActionResult Predict([FromBody] float[] inputData)
+        {
+            if (inputData == null || inputData.Length != 14)
+            {
+                return BadRequest("Les données d'entrée doivent contenir 14 paramètres.");
+            }
+
+            // Convertir les données d'entrée en un Tensor
+            var tensor = new DenseTensor<float>(inputData, new[] { 1, 14 });
+
+            // Effectuer l'inférence avec ONNX Runtime
+            var results = _onnxSession.Run(new[] { "input" }, new[] { tensor });
+
+            // Obtenir la prédiction (dans cet exemple, la première sortie est la prédiction)
+            var prediction = results.First().AsTensor<float>().ToArray();
+
+            // Retourner la prédiction (0 ou 1)
+            return Ok(new { prediction = prediction[0] });
+        }
+    }
+}

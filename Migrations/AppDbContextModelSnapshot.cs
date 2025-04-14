@@ -24,12 +24,12 @@ namespace Library_SSMS.Migrations
 
             modelBuilder.Entity("LibrarySSMS.Models.Admin", b =>
                 {
-                    b.Property<Guid>("UIDKEY")
+                    b.Property<Guid>("UID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("DBmanipulation")
-                        .HasColumnType("int");
+                    b.Property<bool?>("DBmanipulation")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -66,11 +66,12 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UIDKEY")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("nbDeletedacount")
                         .HasColumnType("int");
@@ -78,11 +79,97 @@ namespace Library_SSMS.Migrations
                     b.Property<int?>("nbSuspendedacount")
                         .HasColumnType("int");
 
-                    b.HasKey("UIDKEY");
+                    b.HasKey("UID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.AdminH", b =>
+                {
+                    b.Property<Guid>("UID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("AccountStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("AdminUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("DBmanipulation")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateofBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsOnline")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSuspended")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastLogin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SuperAdminUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UIDKEY")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UID");
+
+                    b.HasIndex("AdminUID");
+
+                    b.HasIndex("SuperAdminUID");
+
+                    b.ToTable("AdminHs");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.CGM", b =>
@@ -95,13 +182,13 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float?>("Glycemia")
                         .HasColumnType("real");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("battry")
@@ -118,9 +205,9 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("IdCGM");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("CGMs");
                 });
@@ -131,7 +218,10 @@ namespace Library_SSMS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid>("AdminHUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AdresseCentre")
@@ -151,10 +241,11 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RespHoptUID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("Timestamp")
@@ -162,11 +253,11 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("IdC");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminHUID");
 
-                    b.HasIndex("RespHoptUID");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Centress");
                 });
@@ -177,7 +268,7 @@ namespace Library_SSMS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -194,19 +285,19 @@ namespace Library_SSMS.Migrations
                     b.Property<Guid>("PatientUID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("State")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("isvalide")
-                        .HasColumnType("bit");
+                    b.Property<Guid?>("SuperAdminUID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UIDMedRec");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
                     b.HasIndex("PatientUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("MedRecs");
                 });
@@ -220,7 +311,7 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("AccountStatus")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Adresse")
@@ -312,7 +403,7 @@ namespace Library_SSMS.Migrations
                     b.Property<bool?>("SubscriptionPlan")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -327,9 +418,9 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("UID");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Patientss");
                 });
@@ -346,7 +437,7 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("AccountStatus")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Adress")
@@ -430,7 +521,7 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("SubscriptionPlan")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -442,9 +533,9 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("UID");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("ProSs");
                 });
@@ -454,7 +545,7 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("IdProche")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -466,118 +557,18 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdProche");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
                     b.HasIndex("PatientUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Proches");
-                });
-
-            modelBuilder.Entity("LibrarySSMS.Models.RespHop", b =>
-                {
-                    b.Property<Guid>("UID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("AccountStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("AdminUIDKEY")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Certif")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateofBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("IdVehiculeOBUSV")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsOnline")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsValided")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastLogin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("SubscriptionPlan")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("SuperAdminUIDKEY")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("identite")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UID");
-
-                    b.HasIndex("AdminUIDKEY");
-
-                    b.HasIndex("SuperAdminUIDKEY");
-
-                    b.ToTable("RespHops");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.SVEmbulance", b =>
@@ -586,13 +577,13 @@ namespace Library_SSMS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IdAdminH")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("IdCentre")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("IdRespHop")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Latitude")
@@ -601,24 +592,38 @@ namespace Library_SSMS.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<string>("Matricule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("Timestamp")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("isAmbulanceAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isAmbulancePanne")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("isAmbulanceReady")
                         .HasColumnType("bit");
 
                     b.HasKey("IdEmbulance");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
+
+                    b.HasIndex("IdAdminH");
 
                     b.HasIndex("IdCentre");
 
-                    b.HasIndex("IdRespHop");
-
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("SVEmbulances");
                 });
@@ -633,7 +638,7 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsConnected")
@@ -653,7 +658,7 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("Timestamp")
@@ -667,9 +672,9 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("Idphone");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Smartphones");
                 });
@@ -684,7 +689,7 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("FC_capte")
@@ -713,7 +718,7 @@ namespace Library_SSMS.Migrations
                     b.Property<int?>("PAS_capte")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float?>("TGS_capte")
@@ -727,9 +732,9 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("IdSmartwatch");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("Smartwatches");
                 });
@@ -744,7 +749,7 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("AdminUIDKEY")
+                    b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double?>("Body_Temperature")
@@ -791,7 +796,7 @@ namespace Library_SSMS.Migrations
                     b.Property<int?>("Respiratory_Rate")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("SuperAdminUIDKEY")
+                    b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Systolic_Blood_Pressure")
@@ -805,16 +810,16 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("IdSmartwatchNewGen");
 
-                    b.HasIndex("AdminUIDKEY");
+                    b.HasIndex("AdminUID");
 
-                    b.HasIndex("SuperAdminUIDKEY");
+                    b.HasIndex("SuperAdminUID");
 
                     b.ToTable("SmartwatchNewGens");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.SuperAdmin", b =>
                 {
-                    b.Property<Guid>("UIDKEY")
+                    b.Property<Guid>("UID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -856,8 +861,9 @@ namespace Library_SSMS.Migrations
                     b.Property<bool?>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UIDKEY")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("nbDeletedAdminacount")
                         .HasColumnType("int");
@@ -865,7 +871,7 @@ namespace Library_SSMS.Migrations
                     b.Property<int?>("nbSuspendedAdminacount")
                         .HasColumnType("int");
 
-                    b.HasKey("UIDKEY");
+                    b.HasKey("UID");
 
                     b.ToTable("SuperAdmins");
                 });
@@ -880,6 +886,9 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("AdminUID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
@@ -893,6 +902,9 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("Modele")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SuperAdminUID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("Timestamp")
                         .HasColumnType("datetimeoffset");
@@ -911,6 +923,10 @@ namespace Library_SSMS.Migrations
 
                     b.HasKey("IdVehiculeOBU");
 
+                    b.HasIndex("AdminUID");
+
+                    b.HasIndex("SuperAdminUID");
+
                     b.ToTable("VehiculeOBUs");
                 });
 
@@ -918,44 +934,55 @@ namespace Library_SSMS.Migrations
                 {
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Admins")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.AdminH", b =>
+                {
+                    b.HasOne("LibrarySSMS.Models.Admin", null)
+                        .WithMany("AdminHs")
+                        .HasForeignKey("AdminUID");
+
+                    b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
+                        .WithMany("AdminHs")
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.CGM", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("CGMs")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("CGMs")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Centre", b =>
                 {
-                    b.HasOne("LibrarySSMS.Models.Admin", null)
-                        .WithMany("Centres")
-                        .HasForeignKey("AdminUIDKEY");
-
-                    b.HasOne("LibrarySSMS.Models.RespHop", "RespHop")
+                    b.HasOne("LibrarySSMS.Models.AdminH", "AdminH")
                         .WithMany()
-                        .HasForeignKey("RespHoptUID")
+                        .HasForeignKey("AdminHUID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LibrarySSMS.Models.Admin", null)
+                        .WithMany("Centres")
+                        .HasForeignKey("AdminUID");
+
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Centres")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
 
-                    b.Navigation("RespHop");
+                    b.Navigation("AdminH");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.MedRec", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("MedRecs")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.Patient", "Patient")
                         .WithMany("MedRecs")
@@ -965,7 +992,7 @@ namespace Library_SSMS.Migrations
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("MedRecs")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
 
                     b.Navigation("Patient");
                 });
@@ -974,29 +1001,29 @@ namespace Library_SSMS.Migrations
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("Patients")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Patients")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.ProS", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("Prosss")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Prosss")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Proche", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("Proches")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.Patient", "Patient")
                         .WithMany("Proches")
@@ -1006,80 +1033,82 @@ namespace Library_SSMS.Migrations
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Proches")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
 
                     b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("LibrarySSMS.Models.RespHop", b =>
-                {
-                    b.HasOne("LibrarySSMS.Models.Admin", null)
-                        .WithMany("RespHops")
-                        .HasForeignKey("AdminUIDKEY");
-
-                    b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
-                        .WithMany("RespHops")
-                        .HasForeignKey("SuperAdminUIDKEY");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.SVEmbulance", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("Embulances")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
+
+                    b.HasOne("LibrarySSMS.Models.AdminH", "AdminH")
+                        .WithMany("SVEmbulances")
+                        .HasForeignKey("IdAdminH");
 
                     b.HasOne("LibrarySSMS.Models.Centre", "Centre")
                         .WithMany("SVEmbulances")
                         .HasForeignKey("IdCentre");
 
-                    b.HasOne("LibrarySSMS.Models.RespHop", "RespHop")
-                        .WithMany("SVEmbulances")
-                        .HasForeignKey("IdRespHop");
-
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Embulances")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
+
+                    b.Navigation("AdminH");
 
                     b.Navigation("Centre");
-
-                    b.Navigation("RespHop");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Smartphone", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("Phones")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("Phones")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Smartwatch", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("SmartWatches")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("SmartWatches")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.SmartwatchNewGen", b =>
                 {
                     b.HasOne("LibrarySSMS.Models.Admin", null)
                         .WithMany("SmartWatchesNewGen")
-                        .HasForeignKey("AdminUIDKEY");
+                        .HasForeignKey("AdminUID");
 
                     b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
                         .WithMany("SmartWatchesNewGen")
-                        .HasForeignKey("SuperAdminUIDKEY");
+                        .HasForeignKey("SuperAdminUID");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.VehiculeOBU", b =>
+                {
+                    b.HasOne("LibrarySSMS.Models.Admin", null)
+                        .WithMany("VehiculeOBUss")
+                        .HasForeignKey("AdminUID");
+
+                    b.HasOne("LibrarySSMS.Models.SuperAdmin", null)
+                        .WithMany("VehiculeOBUss")
+                        .HasForeignKey("SuperAdminUID");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Admin", b =>
                 {
+                    b.Navigation("AdminHs");
+
                     b.Navigation("CGMs");
 
                     b.Navigation("Centres");
@@ -1096,11 +1125,16 @@ namespace Library_SSMS.Migrations
 
                     b.Navigation("Prosss");
 
-                    b.Navigation("RespHops");
-
                     b.Navigation("SmartWatches");
 
                     b.Navigation("SmartWatchesNewGen");
+
+                    b.Navigation("VehiculeOBUss");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.AdminH", b =>
+                {
+                    b.Navigation("SVEmbulances");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.Centre", b =>
@@ -1115,13 +1149,10 @@ namespace Library_SSMS.Migrations
                     b.Navigation("Proches");
                 });
 
-            modelBuilder.Entity("LibrarySSMS.Models.RespHop", b =>
-                {
-                    b.Navigation("SVEmbulances");
-                });
-
             modelBuilder.Entity("LibrarySSMS.Models.SuperAdmin", b =>
                 {
+                    b.Navigation("AdminHs");
+
                     b.Navigation("Admins");
 
                     b.Navigation("CGMs");
@@ -1140,11 +1171,11 @@ namespace Library_SSMS.Migrations
 
                     b.Navigation("Prosss");
 
-                    b.Navigation("RespHops");
-
                     b.Navigation("SmartWatches");
 
                     b.Navigation("SmartWatchesNewGen");
+
+                    b.Navigation("VehiculeOBUss");
                 });
 #pragma warning restore 612, 618
         }

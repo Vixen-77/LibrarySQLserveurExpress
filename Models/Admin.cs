@@ -11,8 +11,8 @@ namespace LibrarySSMS.Models
     public class Admin 
     {
         [Key]
-        public required Guid UIDKEY { get; set; } 
         public required Guid UID {get; set;}
+        public required string UIDKEY {get; set;}
     
         [EmailAddress]
         public required string Email { get; set; }
@@ -30,10 +30,10 @@ namespace LibrarySSMS.Models
         public int? nbSuspendedacount {get; set;}
         public int? nbDeletedacount {get; set;}
         public bool IsSuspended { get; set; } // 🔴 Admin suspendu ou pas
-        public int? DBmanipulation {get; set;} // 0 si pas de manipulation 1 si manipulation de la base de donnée
+        public bool? DBmanipulation {get; set;} // 0 si pas de manipulation 1 si manipulation de la base de donnée
 
         
-        public virtual ICollection<RespHop>? RespHops { get; set; }
+        public virtual ICollection<AdminH>? AdminHs { get; set; }
         public virtual ICollection<SVEmbulance>? Embulances { get; set; }
         public virtual ICollection<Centre>? Centres { get; set; }
         public virtual ICollection<Patient>? Patients { get; set; } // Liste des patients gérés par l'admin
@@ -44,6 +44,7 @@ namespace LibrarySSMS.Models
         public virtual ICollection<Smartphone>? Phones { get; set; } // Liste des téléphones gérés par l'admin
         public virtual ICollection<ProS>? Prosss { get; set; } // Liste des médicaments gérés par l'admin
         public virtual ICollection<CGM>? CGMs { get; set; } // Liste des CGM gérés par l'admin
+        public virtual ICollection<VehiculeOBU>? VehiculeOBUss { get; set; } // Liste des super admins gérés par le super admin
         
     }
 }

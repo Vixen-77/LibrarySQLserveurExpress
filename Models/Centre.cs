@@ -9,14 +9,14 @@ namespace LibrarySSMS.Models
         public required Guid IdC { get; set; } // UID du centre
 
 
-        public required Guid RespHoptUID { get; set; }
-        [ForeignKey(nameof(RespHoptUID))]
-        public virtual required RespHop RespHop { get; set; }
-        public virtual required ICollection<SVEmbulance> SVEmbulances { get; set; } = new List<SVEmbulance>();
-        
+        public required Guid AdminHUID { get; set; }
+        [ForeignKey(nameof(AdminHUID))]
+        public virtual required AdminH AdminH { get; set; }
+        public virtual required ICollection<SVEmbulance> SVEmbulances { get; set; } = new List<SVEmbulance>();      
         
         public required string NomC { get; set; }
         public required string AdresseCentre { get; set; }
+        public required string PhoneNumber { get; set; } // Optionnel
         public int Nbamb { get; set; }
 
         public double Latitude { get; set; }  // Précis et conforme à OSM
