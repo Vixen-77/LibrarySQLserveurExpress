@@ -7,7 +7,7 @@ namespace LibrarySSMS.Models
 {
     public class ProS 
     {
-      public required bool IsAvailable { get; set; }
+      public required Availibility IsAvailable { get; set; }
       public required bool AcceptRequest { get; set; } // true si le proS accepte l'urgence 
       public DateTime? DateAcceptRequest { get; set; } // date d'acceptation de la demande d'urgence
       public required bool CheckedSchedule { get; set; } // true si le proS a a consulté toute les alerte 
