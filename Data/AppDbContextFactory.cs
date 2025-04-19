@@ -7,12 +7,12 @@ plus tard car la chaine de connexion est désormais gere par les deux API (princ
 TODO: cependant ne supprimez pas ce bout de code on le décommantera dans le cas ou on veut faire dautre migrations*/
 
 
-/*
-using Microsoft.EntityFrameworkCore;
+
+/*using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.IO;*/
-/*
+using System.IO;
+
 namespace LibrarySSMS
 {
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
@@ -22,7 +22,7 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString = "chaine de connexion"; 
+            var connectionString ="CHAIN_DE_CNX"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 
