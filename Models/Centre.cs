@@ -8,11 +8,11 @@ namespace LibrarySSMS.Models
         [Key]
         public required Guid IdC { get; set; } // UID du centre
 
-
+        
         public required Guid AdminHUID { get; set; }
         [ForeignKey(nameof(AdminHUID))]
-        public virtual required AdminH AdminH { get; set; }
-        public virtual required ICollection<SVEmbulance> SVEmbulances { get; set; } = new List<SVEmbulance>();      
+        public virtual AdminH? AdminH { get; set; }
+        public virtual ICollection<SVEmbulance> SVEmbulances { get; set; } = new List<SVEmbulance>();      
         
         public required string NomC { get; set; }
         public required string AdresseCentre { get; set; }
