@@ -2,9 +2,9 @@ namespace LibrarySSMS.Enums
 {
     public enum MedRecState
     {
-        unvalide =-1,        
-        Pawding =0,
-        valide =1,       // Correction : "passagé" -> "Passager" (orthographe)
+        unvalid =-1,        
+        Pending =0,
+        valid =1,       // Correction : "passagé" -> "Passager" (orthographe)
         
          
     }

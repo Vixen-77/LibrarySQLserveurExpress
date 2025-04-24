@@ -69,5 +69,10 @@ namespace LibrarySSMS.Models
        
         //juste l'identité 
         public required string identite {get;set;}
+
+        public string? ProfilPic {get;set;}
+
+        public bool IsDeleted { get; set; } // Pour le soft delete
+        public DateTime? DeletedAt { get; set; } // Pour le soft delete
     }
 }

@@ -27,5 +27,8 @@ namespace LibrarySSMS
       public DbSet<NotificationAdminAlert> NotificationAdminAlerts { get; set; } // Ajout de la DbSet pour les notifications admin 16
       public DbSet<NotificationServiceClient> NotificationServiceClients { get; set; } // Ajout de la DbSet pour les notifications service client 17
       public DbSet<NotificationSuperAdmin> NotificationSuperAdmins { get; set; } // Ajout de la DbSet pour les notifications 18
+      public DbSet<NotifAlertPatient> NotifAlertPatients { get; set; } // Ajout de la DbSet pour les notifications alert patient 19
+      public DbSet<NotifAlertVoisin> NotifAlertVoisins { get; set; } // Ajout de la DbSet pour les notifications alert voisin 20
+
     }
 }

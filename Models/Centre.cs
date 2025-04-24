@@ -16,6 +16,7 @@ namespace LibrarySSMS.Models
         
         public required string NomC { get; set; }
         public required string AdresseCentre { get; set; }
+        public required string PostalCode { get; set; }
         public required string PhoneNumber { get; set; } // Optionnel
         public int Nbamb { get; set; }
 

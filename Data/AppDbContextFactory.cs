@@ -8,7 +8,7 @@ TODO: cependant ne supprimez pas ce bout de code on le décommantera dans le cas
 
 
 
-/*using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -22,11 +22,11 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString ="CHAIN_DE_CNX"; 
+            var connectionString ="Server=localhost\\MSSQLSERVER03;Database=IoTHealth2.0;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }
     }
-}*/
+}

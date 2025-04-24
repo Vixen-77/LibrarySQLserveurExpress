@@ -39,5 +39,6 @@ namespace LibrarySSMS.Models{
           public double Latitude { get; set; }  // Précis et conforme à OSM
           public double Longitude { get; set; } // Précis et conforme à OSM
           public DateTimeOffset Timestamp { get; set; } // Format ISO 8601 + UTC
+          public required string IpAdress {get; set;}
     }
 }

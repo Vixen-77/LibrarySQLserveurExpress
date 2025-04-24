@@ -21,6 +21,9 @@ namespace LibrarySSMS.Models
     [EmailAddress]
     public required string MailMed { get; set; }
 
+    public required string Title { get; set; } 
+
+    public required string Description { get; set; }
 
 
     // Clé étrangère vers Patient

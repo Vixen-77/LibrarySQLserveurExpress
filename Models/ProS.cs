@@ -51,6 +51,10 @@ namespace LibrarySSMS.Models
       
        public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
 
+      public string? ProfilPic {get;set;}
+
+      public bool IsDeleted { get; set; } // Pour le soft delete
+      public DateTime? DeletedAt { get; set; } // Pour le soft delete
 
        //voir si on rajouter des attribut ou ideé intéréssante
     }

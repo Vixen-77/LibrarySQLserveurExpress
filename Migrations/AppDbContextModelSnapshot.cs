@@ -248,6 +248,10 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
@@ -277,6 +281,10 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -294,6 +302,10 @@ namespace Library_SSMS.Migrations
                     b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UIDMedRec");
 
                     b.HasIndex("AdminUID");
@@ -303,6 +315,65 @@ namespace Library_SSMS.Migrations
                     b.HasIndex("SuperAdminUID");
 
                     b.ToTable("MedRecs");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.NotifAlertPatient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Titre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotifAlertPatients");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.NotifAlertVoisin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Titre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotifAlertVoisins");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.NotificationAdmin", b =>
@@ -326,7 +397,7 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PatientUID")
+                    b.Property<Guid?>("userUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -446,6 +517,9 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -472,6 +546,9 @@ namespace Library_SSMS.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsOnline")
@@ -507,6 +584,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilPic")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Role")
@@ -582,6 +662,9 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTime>("DateofBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -600,6 +683,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<int>("IsAvailable")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsOnline")
                         .HasColumnType("bit");
@@ -628,6 +714,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilPic")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Role")
@@ -891,6 +980,10 @@ namespace Library_SSMS.Migrations
 
                     b.Property<int?>("Heart_Rate")
                         .HasColumnType("int");
+
+                    b.Property<string>("IpAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsConnected")
                         .HasColumnType("bit");
