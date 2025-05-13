@@ -22,7 +22,7 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString ="Server=localhost\\MSSQLSERVER03;Database=IoTHealth2.0;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
+            var connectionString ="Server=localhost\\MSSQLSERVER03;Database=EMergency;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 

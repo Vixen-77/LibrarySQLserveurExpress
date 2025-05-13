@@ -11,6 +11,6 @@ public class NotificationSuperAdmin
     public required string Message { get; set; }
     public string? report { get; set; }
     public DateTime CreatedAt { get; set; }
-    public bool IsRead { get; set; }
+    public bool? IsRead { get; set; }
 }
 }

@@ -175,6 +175,44 @@ namespace Library_SSMS.Migrations
                     b.ToTable("AdminHs");
                 });
 
+            modelBuilder.Entity("LibrarySSMS.Models.Alert", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descrip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PatientUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProSID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alerts");
+                });
+
             modelBuilder.Entity("LibrarySSMS.Models.CGM", b =>
                 {
                     b.Property<Guid>("IdCGM")
@@ -269,6 +307,38 @@ namespace Library_SSMS.Migrations
                     b.ToTable("Centress");
                 });
 
+            modelBuilder.Entity("LibrarySSMS.Models.CreationCompte", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid?>("AdminUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("userUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CreationCompte");
+                });
+
             modelBuilder.Entity("LibrarySSMS.Models.MedRec", b =>
                 {
                     b.Property<Guid>("UIDMedRec")
@@ -324,6 +394,10 @@ namespace Library_SSMS.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -423,6 +497,9 @@ namespace Library_SSMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProSID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("patientUID")
                         .HasColumnType("uniqueidentifier");
 
@@ -474,7 +551,7 @@ namespace Library_SSMS.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsRead")
+                    b.Property<bool?>("IsRead")
                         .HasColumnType("bit");
 
                     b.Property<string>("Message")
