@@ -9,7 +9,7 @@ namespace LibrarySSMS.Models
         public required Guid IdEmbulance { get; set; } // UID de l'embulance 
         public required string Matricule { get; set; } // Matricule de l'embulance
         
-
+        public bool? IsConnected { get; set; }
         public required string PasswordHash { get; set; } // Mot de passe de l'embulance
         
 

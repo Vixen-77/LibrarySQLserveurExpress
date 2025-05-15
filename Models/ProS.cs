@@ -48,7 +48,7 @@ namespace LibrarySSMS.Models
        public required string identite {get;set;}
        public required string Certif {get;set;} 
       
-      
+      public required bool ConfMail { get; set; } 
        public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
 
       public string? ProfilPic {get;set;}

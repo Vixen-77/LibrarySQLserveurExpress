@@ -1,12 +1,12 @@
 
-                         //  FIXME:FIXME:FIXME:FIXME:NOTE IMPORTANTE SUR AppDbContextFactory:FIXME:FIXME:FIXME:FIXME:FIXME:
+//  FIXME:FIXME:FIXME:FIXME:NOTE IMPORTANTE SUR AppDbContextFactory:FIXME:FIXME:FIXME:FIXME:FIXME:
 
 /*FIXME: ce code est consu pour la creation des migration et linstantion de appDBcontext iniciale 
  il est selement utiliser lors des migration des table et va jamais etre utiliser 
 plus tard car la chaine de connexion est désormais gere par les deux API (principale et secondaire)
 TODO: cependant ne supprimez pas ce bout de code on le décommantera dans le cas ou on veut faire dautre migrations*/
 
-
+/*
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -22,7 +22,7 @@ namespace LibrarySSMS
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
 
             // Chaîne de connexion (remplace avec la tienne)
-            var connectionString ="Server=localhost\\MSSQLSERVER03;Database=EMergency;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
+            var connectionString ="Server=localhost\\MSSQLSERVER03;Database=EMergency3;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"; 
             
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -30,3 +30,4 @@ namespace LibrarySSMS
         }
     }
 }
+*/

@@ -14,9 +14,9 @@ namespace LibrarySSMS.Models{
         public required string Modele { get; set; } 
 
         public required Guid idporteur {get; set;} 
+        public required bool IsConnected { get; set; }
 
-
-        public required float battry {get; set;} 
+        public required float battry { get; set; } 
    
         public required Typecar typecar {get; set;}
 

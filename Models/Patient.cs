@@ -14,9 +14,7 @@ namespace LibrarySSMS.Models
         [Key]
         public required Guid UID { get; set; } 
 
-
-
-    
+        public required bool ConfMail { get; set; } 
  
         public virtual ICollection<Proche> Proches { get; set; } = new List<Proche>();
         public virtual ICollection<MedRec> MedRecs { get; set; } = new List<MedRec>();
@@ -70,7 +68,8 @@ namespace LibrarySSMS.Models
         //juste l'identité 
         public required string identite {get;set;}
 
-        public string? ProfilPic {get;set;}
+        public int? StateColor { get; set; } //0: rouge 1: orange 2: vert
+        public string? ProfilPic { get; set; }
 
         public bool IsDeleted { get; set; } // Pour le soft delete
         public DateTime? DeletedAt { get; set; } // Pour le soft delete

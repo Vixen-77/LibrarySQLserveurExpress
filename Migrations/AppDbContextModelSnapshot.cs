@@ -213,6 +213,43 @@ namespace Library_SSMS.Migrations
                     b.ToTable("Alerts");
                 });
 
+            modelBuilder.Entity("LibrarySSMS.Models.ArchivesUser", b =>
+                {
+                    b.Property<Guid>("IdArchives")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("Timestamp")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("user")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdArchives");
+
+                    b.ToTable("ArchivesUsers");
+                });
+
             modelBuilder.Entity("LibrarySSMS.Models.CGM", b =>
                 {
                     b.Property<Guid>("IdCGM")
@@ -228,6 +265,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<float?>("Glycemia")
                         .HasColumnType("real");
+
+                    b.Property<bool>("IsConnected")
+                        .HasColumnType("bit");
 
                     b.Property<Guid?>("SuperAdminUID")
                         .HasColumnType("uniqueidentifier");
@@ -337,6 +377,35 @@ namespace Library_SSMS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CreationCompte");
+                });
+
+            modelBuilder.Entity("LibrarySSMS.Models.HelpForm", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("HelpForms");
                 });
 
             modelBuilder.Entity("LibrarySSMS.Models.MedRec", b =>
@@ -588,6 +657,9 @@ namespace Library_SSMS.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ConfMail")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -676,6 +748,9 @@ namespace Library_SSMS.Migrations
                     b.Property<int>("State")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StateColor")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("SubscriptionPlan")
                         .HasColumnType("bit");
 
@@ -728,6 +803,9 @@ namespace Library_SSMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("CheckedSchedule")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ConfMail")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("CreatedAt")
@@ -870,6 +948,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<Guid?>("IdCentre")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("IsConnected")
+                        .HasColumnType("bit");
 
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
@@ -1177,6 +1258,9 @@ namespace Library_SSMS.Migrations
 
                     b.Property<Guid?>("AdminUID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsConnected")
+                        .HasColumnType("bit");
 
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
