@@ -45,15 +45,18 @@ namespace LibrarySSMS.Models
         public required DateTime DateofBirth {get;set;}
         public DateTime CreatedAt { get; set; } 
         public DateTime? LastLogin { get; set; }
-        public required bool AccountStatus  {get; set; }   // false=normale true= user suspendu
+        public required bool IsBanned { get; set; }
+        public required bool AccountStatus { get; set; }   // false=normale true= user suspendu
         public bool TwoFactorEnabled { get; set; } 
         public bool?  SubscriptionPlan { get; set; }  //false=gratuit true=payant  //avoir si on peut le faire
         public bool IsOnline { get; set; } 
         public required RoleManager Role { get; set; }
 
-
+        public float? latitudePatient { get; set; }
+        public float? longitudePatient { get; set; }
         
-        public Guid?  IdphoneP { get; set; } 
+        
+        public Guid? IdphoneP { get; set; } 
         public Guid?  IdSmartwatchNewGenP {get; set;}
         public required Guid? IdSmartwatchP {get; set;}
         public Guid? IdVehiculeOBUP {get;set;}
@@ -61,7 +64,7 @@ namespace LibrarySSMS.Models
 
 
         public required bool IsActive { get; set; }
-        public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
+        public int IsValidated { get; set; }  // defaut->0:pas / traite 1:valide / -1:rejeté
         public int? NbSec { get; set;} 
         public int? NbSecWeek { get; set;}
        

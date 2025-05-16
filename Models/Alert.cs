@@ -1,8 +1,10 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace LibrarySSMS.Models{
     public class Alert
     {
-        public int Id { get; set; } // id de la notification volatile meme en db int est suffisant 
+        [Key]
         public Guid PatientUID { get; set; } // <- utilisé en WHERE
         public Guid? ProSID { get; set; }
         public required string Color { get; set; }
@@ -10,6 +12,8 @@ namespace LibrarySSMS.Models{
         public string? Descrip { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool? IsRead { get; set; }
-        public string? Location { get; set; }
+        public string? Location { get; set; } //nom de la rue
+        public required string latitudePatient { get; set; }
+        public required string longitudePatient { get; set; }
 }
 }

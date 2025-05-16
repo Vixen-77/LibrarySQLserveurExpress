@@ -177,11 +177,9 @@ namespace Library_SSMS.Migrations
 
             modelBuilder.Entity("LibrarySSMS.Models.Alert", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("PatientUID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Color")
                         .IsRequired()
@@ -199,16 +197,21 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientUID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("ProSID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("State")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("latitudePatient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("longitudePatient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PatientUID");
 
                     b.ToTable("Alerts");
                 });
@@ -349,13 +352,11 @@ namespace Library_SSMS.Migrations
 
             modelBuilder.Entity("LibrarySSMS.Models.CreationCompte", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid?>("AdminUID")
+                    b.Property<Guid>("AdminUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -364,14 +365,14 @@ namespace Library_SSMS.Migrations
                     b.Property<bool?>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("State")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("userUID")
+                    b.Property<Guid>("UserUID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -697,14 +698,17 @@ namespace Library_SSMS.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsOnline")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsValidated")
-                        .HasColumnType("bit");
+                    b.Property<int>("IsValidated")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
@@ -766,6 +770,12 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("identite")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("latitudePatient")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("longitudePatient")
+                        .HasColumnType("real");
 
                     b.HasKey("UID");
 
@@ -839,14 +849,17 @@ namespace Library_SSMS.Migrations
                     b.Property<int>("IsAvailable")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsOnline")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsValidated")
-                        .HasColumnType("bit");
+                    b.Property<int>("IsValidated")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
@@ -893,6 +906,12 @@ namespace Library_SSMS.Migrations
                     b.Property<string>("identite")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("latitudePro")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("longitudePro")
+                        .HasColumnType("real");
 
                     b.HasKey("UID");
 

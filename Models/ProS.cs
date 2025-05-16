@@ -34,7 +34,9 @@ namespace LibrarySSMS.Models
         public required bool Gender {get; set;}
         public DateTime? LastLogin { get; set;}
          public required bool AccountStatus  {get; set;}   // false=normale true= user suspendu
-        public bool TwoFactorEnabled { get; set;} 
+        public required bool IsBanned { get; set; }
+
+        public bool TwoFactorEnabled { get; set; } 
         public required bool  SubscriptionPlan { get; set;}  //false=gratuit true=payant  //avoir si on peut le faire
         public bool IsOnline { get; set;} 
         public required RoleManager Role { get; set; }
@@ -42,14 +44,16 @@ namespace LibrarySSMS.Models
         public required bool IsActive { get; set; }
         public Guid? IdVehiculeOBUSVP {get;set;}
         public Guid? IdSmartphoneProS {get;set;}
+        public float? latitudePro { get; set; }
+        public float? longitudePro { get; set; }
 
 
        //FIXME: ici les fichier idf et certif
-       public required string identite {get;set;}
+      public required string identite { get; set; }
        public required string Certif {get;set;} 
       
       public required bool ConfMail { get; set; } 
-       public bool IsValidated { get; set; }  // Par défaut : false et se mettra a true plus tard 
+     public int IsValidated { get; set; }  // defaut->0:pas / traite 1:valide / -1:rejeté
 
       public string? ProfilPic {get;set;}
 
