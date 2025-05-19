@@ -23,9 +23,6 @@ namespace LibrarySSMS.Models
 
     public required string Title { get; set; } 
 
-    public required string Description { get; set; }
-
-
     // Clé étrangère vers Patient
     public required Guid PatientUID { get; set; }
 

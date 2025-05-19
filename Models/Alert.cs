@@ -7,7 +7,7 @@ namespace LibrarySSMS.Models{
         [Key]
         public Guid PatientUID { get; set; } // <- utilisé en WHERE
         public Guid? ProSID { get; set; }
-        public required string Color { get; set; }
+        public required string Color { get; set; } //orange rouge
         public int State { get; set; } //0: pas encore traite  1:en cours de traitement  2: finis 
         public string? Descrip { get; set; }
         public DateTime CreatedAt { get; set; }
